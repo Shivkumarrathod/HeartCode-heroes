@@ -5,6 +5,8 @@ import {
     signInWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup,
+    signOut,
+    onAuthStateChanged,
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -16,12 +18,12 @@ const firebaseConfig = {
     appId: "1:598999667606:web:b4e71e4cd7c456cc34c3b7"
 };
 const firebaseApp = initializeApp(firebaseConfig)
-const firebaseAuth = getAuth(firebaseApp)
+export const firebaseAuth = getAuth(firebaseApp)
 const GoogleProvider = new GoogleAuthProvider()
 
 
 const SignUpUser = (email,password)=>{
-   return createUserWithEmailAndPassword(firebaseAuth ,email,password)
+    createUserWithEmailAndPassword(firebaseAuth ,email,password)
    .then((userCredential)=>{
     console.log(userCredential);
     })
@@ -30,7 +32,7 @@ const SignUpUser = (email,password)=>{
     })
 }
 const SignInUser = (email,password)=>{
-   return signInWithEmailAndPassword(firebaseAuth ,email,password)
+    signInWithEmailAndPassword(firebaseAuth ,email,password)
     .then((userCredential)=>{
         console.log(userCredential);
     })
@@ -49,8 +51,19 @@ const loginWithGoogle = ()=>{
         console.log(err);
     })
 }
+const signoutUser = ()=>{
+    signOut(firebaseAuth).then(()=>{
+        console.log("lout user");
+
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
 export {
     SignUpUser,
     SignInUser,
-    loginWithGoogle
+    loginWithGoogle,
+    signoutUser,
+    
 }

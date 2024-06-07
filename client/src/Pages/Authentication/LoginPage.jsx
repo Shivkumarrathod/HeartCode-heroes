@@ -3,6 +3,7 @@ import { useFirebase } from '../../Context/Context';
 import Google from '../../utiles/Google.svg';
 import backgroundImage from '../../utiles/backgroundimage.jpg'; // Import the background image
 import { RxCross1 } from "react-icons/rx";
+import { useNavigate } from 'react-router';
 const LoginPage = () => {
     const firebase = useFirebase();
     const [signInEmail, setSignInEmail] = useState('');
@@ -10,81 +11,19 @@ const LoginPage = () => {
     const [signUpEmail, setSignUpEmail] = useState('');
     const [signUpPassword, setSignUpPassword] = useState('');
     const [createUser, setCreateUser] = useState(false);
-
-    const handleSignIn = () => {
-        firebase.SignInUser(signInEmail, signInPassword);
-    };
-
-<<<<<<< HEAD
+    const navigate = useNavigate()
     const handleSignIn=()=>{
         firebase.SignInUser(signInEmail,signInPassword)
+        navigate('/')
     }
     const handleSignUp = ()=>{
         firebase.SignUpUser(signUpEmail,signUpPassword)
+        navigate('/')
     }
-
-  return (
-    <div>
-        {/* fore login page */}
-      <div>
-        <div>
-            <label >Email</label>
-            <input type="email" placeholder='Enter Email' 
-             value={signInEmail}
-             onChange={(e)=>setSignInEmail(e.target.value)}
-            />
-        </div>
-        <div>
-            <label >Password</label>
-            <input type="email" placeholder='Enter Password' 
-             value={signInPassword}
-             onChange={(e)=>setSignInPassword(e.target.value)}
-            />
-        </div>
-        <button onClick={handleSignIn}>Sign In</button>
-      </div>
-
-      {/* for signup and google logged in page */}
-      <div>
-        <div>
-            <button onClick={()=>setCreatUser(!creatUser)}>Create an Account</button>
-        </div>
-        <div>
-            <button onClick={()=>firebase.loginWithGoogle()}>
-                <img src={Google} alt="Google.svg" />
-                <p>Continue with Google</p>
-            </button>
-        </div>
-      </div>
-
-    {/* signup things */}
-      {creatUser&&(
-        <div>
-        <div>
-            <label >Email</label>
-            <input type="email" placeholder='Enter Email' 
-             value={signUpEmail}
-             onChange={(e)=>setSignUpEmail(e.target.value)}
-            />
-        </div>
-        <div>
-            <label >Password</label>
-            <input type="email" placeholder='Enter Password' 
-             value={signUpPassword}
-             onChange={(e)=>setSignUpPassword(e.target.value)}
-            />
-        </div>
-        <button onClick={handleSignUp}>Sign up</button>
-      </div>
-      )}
-    </div>
-  )
-}
-=======
-    const handleSignUp = () => {
-        firebase.SignUpUser(signUpEmail, signUpPassword);
-    };
-
+    const googleSignIn=()=>{
+        firebase.loginWithGoogle()
+        navigate('/')
+    }
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100">
             <div className="flex flex-col md:flex-row bg-gray shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
@@ -121,11 +60,10 @@ const LoginPage = () => {
                                 />
                             </div>
                             <button onClick={handleSignIn} className="w-full bg-blue-700 text-white font-bold py-2 px-4 rounded hover:bg-blue-800 focus:outline-none focus:bg-blue-800">Sign In</button>
->>>>>>> 56cc3ba86ff2c629bae4e4e1acb6722ac8c8a5ea
 
                             <button onClick={() => setCreateUser(true)} className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600 mt-8">Create an Account</button>
                             <div className="flex items-center justify-center mt-8">
-                                <button className="flex items-center bg-white border border-gray-300 shadow-sm rounded-md py-2 px-4 hover:bg-gray-100">
+                                <button className="flex items-center bg-white border border-gray-300 shadow-sm rounded-md py-2 px-4 hover:bg-gray-100" onClick={googleSignIn}>
                                     <img src={Google} alt="Google.svg" className="mr-2 w-5 h-5" />
                                     <span>Continue with Google</span>
                                 </button>
@@ -157,7 +95,7 @@ const LoginPage = () => {
                             </div>
                             <button onClick={handleSignUp} className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600">Sign Up</button>
                             <div className="flex items-center justify-center mt-8">
-                                <button className="flex items-center bg-white border border-gray-300 shadow-sm rounded-md py-2 px-4 hover:bg-gray-100">
+                                <button className="flex items-center bg-white border border-gray-300 shadow-sm rounded-md py-2 px-4 hover:bg-gray-100" onClick={googleSignIn}>
                                     <img src={Google} alt="Google.svg" className="mr-2 w-5 h-5" />
                                     <span>Continue with Google</span>
                                 </button>
