@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import SignUp from './Pages/Authentication/SignUp'
-
+import { Outlet } from 'react-router'
+import Navigatebar from './Pages/Navigatebar'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+ 
   return (
     <>
-     <SignUp/>
+     <Navigatebar/>
+     <main>
+       <Outlet/>
+     </main>
     </>
   )
 }
