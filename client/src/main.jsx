@@ -8,6 +8,7 @@ import {Route,RouterProvider,createRoutesFromElements} from 'react-router'
 import { FirebaseProvider } from './Context/Context'
 import LoginPage from './Pages/Authentication/LoginPage.jsx'
 import Talk from './Pages/Talk.jsx'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>

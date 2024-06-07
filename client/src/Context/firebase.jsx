@@ -8,6 +8,7 @@ import {
     signOut,
     onAuthStateChanged,
 } from 'firebase/auth'
+import {getDatabase, ref, set} from 'firebase/database'
 
 const firebaseConfig = {
     apiKey: "AIzaSyACPtHblHYp9JkmpIxoLciUZPLfTEfARDU",
@@ -15,10 +16,14 @@ const firebaseConfig = {
     projectId: "heartcode01",
     storageBucket: "heartcode01.appspot.com",
     messagingSenderId: "598999667606",
-    appId: "1:598999667606:web:b4e71e4cd7c456cc34c3b7"
+    appId: "1:598999667606:web:b4e71e4cd7c456cc34c3b7",
+    databaseURL:"https://heartcode01-default-rtdb.firebaseio.com/"
 };
+
 const firebaseApp = initializeApp(firebaseConfig)
 export const firebaseAuth = getAuth(firebaseApp)
+const firebaseDatabase = getDatabase()
+
 const GoogleProvider = new GoogleAuthProvider()
 
 
@@ -59,11 +64,15 @@ const signoutUser = ()=>{
         console.log(err);
     })
 }
-
+const writeRecordedData=(userId,trancript)=>{
+    set(ref(firebaseDatabase,'doctor/'+userId+Date()),{
+        transcript:trancript
+    })
+}
 export {
     SignUpUser,
     SignInUser,
     loginWithGoogle,
     signoutUser,
-    
+    writeRecordedData
 }

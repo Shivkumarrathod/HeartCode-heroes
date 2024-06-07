@@ -7,6 +7,7 @@ import {
     SignInUser,
     loginWithGoogle,
     signoutUser,
+    writeRecordedData,
 } from "./firebase";
 const FirebaseContext = createContext(null)
 export const useFirebase=()=>useContext(FirebaseContext)
@@ -29,7 +30,8 @@ export const FirebaseProvider=(props)=>{
         SignInUser,
         loginWithGoogle,
         signoutUser,
-        isUserLoggedIn
+        isUserLoggedIn,
+        writeRecordedData
     }} >
         {props.children}
     </FirebaseContext.Provider>
