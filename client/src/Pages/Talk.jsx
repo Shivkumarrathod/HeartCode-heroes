@@ -1,5 +1,5 @@
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMicrophone } from "react-icons/fa6";
 
 const Talk = () => {
@@ -9,6 +9,11 @@ const Talk = () => {
   const {transcript,browserSupportsSpeechRecognition} = useSpeechRecognition()
   const startlistening=()=>SpeechRecognition.startListening({ continuous: true,language:'en-IN' })
 
+  useEffect(() => {
+    console.log(transcript)
+  }, [transcript])
+  
+
   if(!browserSupportsSpeechRecognition){
     return null
   }
@@ -16,7 +21,7 @@ const Talk = () => {
     <div>
       <div className='h-[10rem] text-pink-600'>{transcript}</div>
       <button onClick={startlistening} className='bg-pink-500 m-5'>start listening</button>
-      <button onClick={SpeechRecognition.stopListening} className='bg-pink-500 m-5'>start listening</button>
+      <button onClick={()=>{SpeechRecognition.stopListening;}} className='bg-pink-500 m-5'>start listening</button>
       <button onClick={startlistening} className='bg-pink-500 m-5'>start listening</button>
     </div>
   )

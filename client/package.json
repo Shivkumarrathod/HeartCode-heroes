@@ -18,7 +18,7 @@
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "react-speech-recognition": "^3.10.0",
-    "-runtime": "^0.14.1"
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
