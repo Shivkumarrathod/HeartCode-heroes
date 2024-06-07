@@ -13,11 +13,12 @@ const LoginPage = () => {
 
 
     const handleSignIn=()=>{
-        firebase.SignUpUser(setSignInEmail,setSignInPassword)
+        firebase.SignInUser(signInEmail,signInPassword)
     }
     const handleSignUp = ()=>{
-        firebase.SignUpUser(setSignInEmail,setSignInPassword)
+        firebase.SignUpUser(signUpEmail,signUpPassword)
     }
+
   return (
     <div>
         {/* fore login page */}
@@ -45,7 +46,7 @@ const LoginPage = () => {
             <button onClick={()=>setCreatUser(!creatUser)}>Create an Account</button>
         </div>
         <div>
-            <button>
+            <button onClick={()=>firebase.loginWithGoogle()}>
                 <img src={Google} alt="Google.svg" />
                 <p>Continue with Google</p>
             </button>
@@ -69,7 +70,7 @@ const LoginPage = () => {
              onChange={(e)=>setSignUpPassword(e.target.value)}
             />
         </div>
-        <button onClick={handleSignUp}>Sign In</button>
+        <button onClick={handleSignUp}>Sign up</button>
       </div>
       )}
     </div>

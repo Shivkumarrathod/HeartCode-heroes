@@ -2,7 +2,11 @@ import {initializeApp} from 'firebase/app'
 import {
     getAuth,
     createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
 } from 'firebase/auth'
+
 const firebaseConfig = {
     apiKey: "AIzaSyACPtHblHYp9JkmpIxoLciUZPLfTEfARDU",
     authDomain: "heartcode01.firebaseapp.com",
@@ -13,9 +17,20 @@ const firebaseConfig = {
 };
 const firebaseApp = initializeApp(firebaseConfig)
 const firebaseAuth = getAuth(firebaseApp)
+const GoogleProvider = new GoogleAuthProvider()
+
 
 const SignUpUser = (email,password)=>{
-   createUserWithEmailAndPassword(firebaseAuth ,email,password)
+   return createUserWithEmailAndPassword(firebaseAuth ,email,password)
+   .then((userCredential)=>{
+    console.log(userCredential);
+    })
+    .catch((err)=>{
+            console.log(err);
+    })
+}
+const SignInUser = (email,password)=>{
+   return signInWithEmailAndPassword(firebaseAuth ,email,password)
     .then((userCredential)=>{
         console.log(userCredential);
     })
@@ -23,7 +38,19 @@ const SignUpUser = (email,password)=>{
         console.log(err);
     })
 }
-
+const loginWithGoogle = ()=>{
+    signInWithPopup(firebaseAuth,GoogleProvider)
+    .then((result)=>{
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        console.log(credential.accessToken);
+        console.log(result.user);
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+}
 export {
-    SignUpUser
+    SignUpUser,
+    SignInUser,
+    loginWithGoogle
 }
