@@ -1,37 +1,23 @@
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useState } from "react";
 import { FaMicrophone } from "react-icons/fa6";
 
 const Talk = () => {
   const [onMic,setOnMic] = useState(false)
+  const [translateSpeech,setTrandlateSpeech] = useState('')
+  
+  const {transcript,browserSupportsSpeechRecognition} = useSpeechRecognition()
+  const startlistening=()=>SpeechRecognition.startListening({ continuous: true,language:'en-IN' })
 
-  const handleMic = ()=>{
-    if(onMic){
-      setOnMic(false)
-    }else{
-      setOnMic(true)
-    }
+  if(!browserSupportsSpeechRecognition){
+    return null
   }
   return (
     <div>
-      <div className="flex h-[90vh] w-full mt-[0.2rem] justify-center items-center -mt-[5rem] bg-gray-500">
-        <div className="w-[30%] flex justify-center ">
-          <button >
-            <FaMicrophone size={40} className="m-2 text-black" onClick={handleMic}/>
-          </button>
-          {onMic?(
-            <div>
-                <button>click mic to on</button>
-            </div>
-          ):(
-            <div>
-                <button>click mic to Off</button>
-            </div>
-          )}
-        </div>
-        <div className="w-[50%] flex justify-center  border-l ">
-         <textarea name="" id="" className="bg-white m-2 rounded-sm h-[30rem] w-[40rem] text-black pl-10 pt-4 ml-2 shadow-2xl focus:border-pink-600" placeholder="SPEAK IN MIC " ></textarea>
-        </div>
-      </div>
+      <div className='h-[10rem] text-pink-600'>{transcript}</div>
+      <button onClick={startlistening} className='bg-pink-500 m-5'>start listening</button>
+      <button onClick={SpeechRecognition.stopListening} className='bg-pink-500 m-5'>start listening</button>
+      <button onClick={startlistening} className='bg-pink-500 m-5'>start listening</button>
     </div>
   )
 }
