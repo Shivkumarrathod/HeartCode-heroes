@@ -5,6 +5,7 @@ import { useFirebase } from '../Context/Context';
 
 const Talk = () => {
   const firebase = useFirebase()
+  console.log(firebase);
   const [onMic,setOnMic] = useState(false)
   const [translateSpeech,setTrandlateSpeech] = useState('')
   

@@ -31,7 +31,8 @@ export const FirebaseProvider=(props)=>{
         loginWithGoogle,
         signoutUser,
         isUserLoggedIn,
-        writeRecordedData
+        writeRecordedData,
+        user,
     }} >
         {props.children}
     </FirebaseContext.Provider>

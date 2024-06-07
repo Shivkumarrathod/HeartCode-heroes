@@ -65,8 +65,8 @@ const signoutUser = ()=>{
     })
 }
 const writeRecordedData=(userId,trancript)=>{
-    set(ref(firebaseDatabase,'doctor/'+userId+Date()),{
-        transcript:trancript
+    set(ref(firebaseDatabase,'doctor/'+userId),{
+      trancript:trancript
     })
 }
 export {
