@@ -1,5 +1,5 @@
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMicrophone } from "react-icons/fa6";
 import { useFirebase } from '../Context/Context';
 
@@ -12,6 +12,9 @@ const Talk = () => {
   const {transcript,browserSupportsSpeechRecognition} = useSpeechRecognition()
 
   const startlistening=()=>SpeechRecognition.startListening({ continuous: true,language:'en-IN' })
+
+
+  
 
   const stopListeningvoice =()=>{
     SpeechRecognition.stopListening()
